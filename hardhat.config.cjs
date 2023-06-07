@@ -1,5 +1,7 @@
 require("@nomicfoundation/hardhat-toolbox");
 
+require('dotenv').config();
+
 const polygonURL = process.env.POLYGON_URL;
 
 const account = process.env.PRIVATE_KEY;
