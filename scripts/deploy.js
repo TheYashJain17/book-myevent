@@ -1,12 +1,15 @@
 import hre from "hardhat";
 
-import { configDotenv } from "dotenv";
+import { configDotenv } from "dotenv"; //we can use this statement when we cannot use require, simply import this
 
-configDotenv();
+configDotenv(); //and then run this as function , and it will do the same job as require('dotenv).config();
 
 async function main(){
 
-  const deployer = process.env.PRIVATE_KEY;
+  // const deployer = process.env.PUBLIC_KEY;
+
+
+  const [deployer] = await ethers.getSigners();
 
   const TicketOrganiser = await hre.ethers.getContractFactory('TicketOrganiser');
 
@@ -25,7 +28,7 @@ async function main(){
     {
     
      name: "Blockchain Seminar",
-     cost : tokens(0.0001),
+     cost : ethers.utils.parseEther('0.01'),
      totalTickets :  50,
      date : "August 22",
      time : "5:00PM IST",
@@ -35,7 +38,7 @@ async function main(){
     {
     
      name: "World Cup Final",
-     cost : tokens(0.001),
+     cost : ethers.utils.parseEther('0.02'),
      totalTickets :  100,
      date : "September 15",
      time : "7:00PM IST",
@@ -45,7 +48,7 @@ async function main(){
     {
     
      name: "WWE Live Event",
-     cost : tokens(0.004),
+     cost : ethers.utils.parseEther('0.04'),
      totalTickets :  0,
      date : "October 26",
      time : "2:00PM IST",
@@ -55,7 +58,7 @@ async function main(){
     {
     
      name: "Arijit Singh Concert",
-     cost : tokens(0.0002),
+     cost : ethers.utils.parseEther('0.03'),
      totalTickets :  30,
      date : "November 17",
      time : "9:00PM IST",
@@ -65,7 +68,7 @@ async function main(){
     {
     
      name: "Common Wealth Game",
-     cost : tokens(0.01),
+     cost : ethers.utils.parseEther('0.05'),
      totalTickets :  10,
      date : "December 31",
      time : "10:00AM IST",
@@ -77,7 +80,7 @@ async function main(){
     
     for(let i = 0; i < 5; i++){
     
-    const transaction = await TicketOrganiser.connect(deployer).createEvent(
+    const transaction = await contract.connect(deployer).createEvent(
     
         Events[i].name,
         Events[i].cost,
@@ -106,4 +109,6 @@ main().catch((error) => {
   process.exitCode = 1;
 
 })
+
+// The Address Of The Contract is 0xa919cF1B688ccEb16552A5FeD4178137D7748433
 

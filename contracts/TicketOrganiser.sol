@@ -52,13 +52,18 @@ function createEvent(string memory _name , uint256 _cost , uint256 _totalTickets
 
     eventId++;
 
-    Event memory _event = Event(eventId , _name , _cost , _totalTickets , _date , _time , _location);
+    Event memory _event = EventDetails[eventId];
 
-    allEvents[eventId] = _event;
+    _event.id = eventId;
+    _event.name = _name;
+    _event.cost = _cost;
+    _event.totalTickets = _totalTickets;
+    _event.date = _date;
+    _event.time = _time;
+    _event.location = _location;
 
-    EventDetails[eventId] = _event;
+    allEvents.push(_event);
 
-    allEvents.push(_event); 
 
 }
 
@@ -137,3 +142,4 @@ function withdrawBalance() onlyOwner external {
 }
 
 }
+
