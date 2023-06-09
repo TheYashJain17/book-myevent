@@ -9,7 +9,7 @@ async function main(){
   // const deployer = process.env.PUBLIC_KEY;
 
 
-  const [deployer] = await ethers.getSigners();
+  const [deployer] = await ethers.getSigners(); //This will help us to get the account from which we have deployed the contract , this method returns the array of object therefore we have put the deployer variabele imside array. So always use this method to get the deployer address. 
 
   const TicketOrganiser = await hre.ethers.getContractFactory('TicketOrganiser');
 
