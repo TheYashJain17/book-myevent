@@ -1,8 +1,10 @@
-import { useEffect , useState} from 'react';
+import {useState} from 'react';
 
-/*import Navigattion from '../src/Components/Navigation';
+import {ethers} from 'ethers';
 
-import Sort from '../src/Components/Sort';
+import NavBar from '../src/Components/NavBar';
+
+/*import Sort from '../src/Components/Sort';
 
 import Card from '../src/Components/Card';
 
@@ -64,11 +66,11 @@ function App() {
 
         const ABI = ContractAbi.abi;
 
-        const provider = await ethers.providers.Web3Provider(ethereum);
+        const provider = new ethers.providers.Web3Provider(ethereum);
 
         const signer = await provider.getSigner();
 
-        const contract = await ethers.Contract(
+        const contract = new ethers.Contract(
 
             contractAddress,
             ABI,
@@ -79,52 +81,31 @@ function App() {
 
       setProvider(provider);
 
-      console.log(contract , signer);
+      console.log(contract , signer , provider);
 
 
     }
 
   }
 
-  useEffect(() => {
-
-    window.ethereum.on("chainChanged" , (chainId) => {
-
-      if(chainId != '0x13881'){
-
-        alert("Please Move To Mumbai Polygon Network");
-
-      }
-      else{
-
-        window.location.reload();
-
-      }
-
-    });
-
-    window.ethereum.on("accountsChanged" , (accounts) => {
-
-      window.location.reload();
-
-      setAccount(accounts[0]);
-
-    });
-
-
-    getConnectedAccounts();
-
-    getContractInstance();
-
-
-  } , [account])
 
   return (
     <>
       
-     <h1>GoodBye World</h1> 
+      <NavBar account={account} 
+        connectWallet={connectWallet}
+        getConnectedAccounts={getConnectedAccounts}
+        getContractInstance={getContractInstance}
 
-     <button onClick={connectWallet}>Connect Wallet</button>
+       />
+
+      <header>
+
+      <h2 className='header__title'><strong>Event</strong> Tickets</h2>
+
+      </header>
+
+     <h1>GoodBye World</h1> 
 
       <h2>{account}</h2> 
 
