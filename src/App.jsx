@@ -1,16 +1,17 @@
-import {useState} from 'react';
+import {useState , useEffect} from 'react';
 
 import {ethers} from 'ethers';
 
 import NavBar from '../src/Components/NavBar';
 
-/*import Sort from '../src/Components/Sort';
+import Modal from '../src/Components/Modal';
 
-import Card from '../src/Components/Card';
+/*import Sort from '../src/Components/Sort';
 
 import SeatChart from '../src/Components/SeatChart';*/
 
 import ContractAbi from '../src/artifacts/contracts/TicketOrganiser.sol/TicketOrganiser.json';
+
 
 function App() {
 
@@ -18,9 +19,15 @@ function App() {
 
   const [contract, setContract ] = useState(null);
 
-  const [provider , setProvider] = useState(null);
+  const [provider , setProvider] = useState();
 
-  const {ethereum} = window;
+  const [registeredEvents , setRegisteredEvents] = useState([]);
+
+ 
+  const contractAddress = '0xa919cF1B688ccEb16552A5FeD4178137D7748433';
+
+  const ABI = ContractAbi.abi;
+
 
   const connectWallet = async() => {
 
@@ -49,11 +56,11 @@ function App() {
         setAccount(currentlyConnectedAccounts[0]);
 
       }
-      else{
+      // else{
 
-        alert("Connect To Metanmask With Connect Wallet Button");
+      //   alert("Connect To Metanmask With Connect Wallet Button");
 
-      }
+      // }
 
     }
   }
@@ -62,9 +69,8 @@ function App() {
 
     if(typeof ethereum != "undefined" && account != null){
 
-        const contractAddress = '0xa919cF1B688ccEb16552A5FeD4178137D7748433';
-
-        const ABI = ContractAbi.abi;
+  
+    
 
         const provider = new ethers.providers.Web3Provider(ethereum);
 
@@ -77,26 +83,62 @@ function App() {
             signer
       )
 
-      setContract(contract);
-
-      setProvider(provider);
-
       console.log(contract , signer , provider);
-
 
     }
 
+    setContract(contract);
+
+    setProvider(provider);
+
   }
+  const loadEvents = async() => {
+
+    const provider = new ethers.providers.Web3Provider(ethereum);
+    
+    setProvider(provider);
+
+    const signer = await provider.getSigner();
+
+    const contract = new ethers.Contract(
+
+      contractAddress,
+      ABI,
+      signer
+
+    )
+
+    setContract(contract);
+
+    const allEvents = await contract.getAllEvents();
+
+    console.log(allEvents);
+
+    setRegisteredEvents(allEvents);
+
+    console.log(registeredEvents);
+
+
+  }
+
+  useEffect(() => {
+
+    loadEvents();
+
+  } , []);
+
+ 
+
 
 
   return (
     <>
-      
+
+
       <NavBar account={account} 
         connectWallet={connectWallet}
         getConnectedAccounts={getConnectedAccounts}
         getContractInstance={getContractInstance}
-
        />
 
       <header>
@@ -105,9 +147,31 @@ function App() {
 
       </header>
 
+
      <h1>GoodBye World</h1> 
 
       <h2>{account}</h2> 
+
+      <Modal/>
+
+      <div className="cards">
+
+        {
+
+          registeredEvents.map((event , index) => (
+
+            <h3 key={index}>{event.name}</h3>
+
+          ))
+
+        }      
+
+      </div>
+
+      
+
+
+
 
 
     </>
@@ -115,3 +179,5 @@ function App() {
 }
 
 export default App
+
+

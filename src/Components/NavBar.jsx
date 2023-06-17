@@ -34,7 +34,6 @@ const NavBar = ({account , getContractInstance , connectWallet , getConnectedAcc
     
         getContractInstance();
     
-    
       } , [account]);
 
 
@@ -75,7 +74,7 @@ const NavBar = ({account , getContractInstance , connectWallet , getConnectedAcc
 
     }
 
-
+  
 
     </nav>
 
