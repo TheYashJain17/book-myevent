@@ -2,9 +2,11 @@ import React from 'react';
 
 import downIcon from '../assets/angle-down-solid.svg';
 
-const Sort = () => {
+const Sort = ({account}) => {
 
     return (
+
+   account && (
 
         <div className="sort">
       <div className="sort__select">
@@ -22,7 +24,9 @@ const Sort = () => {
         <img src={downIcon} alt="Dropdown" />
       </div>
     </div>
-  );
+  )
+
+);
 
 
     

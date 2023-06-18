@@ -6,9 +6,9 @@ import NavBar from '../src/Components/NavBar';
 
 import Modal from '../src/Components/Modal';
 
-/*import Sort from '../src/Components/Sort';
+import Sort from '../src/Components/Sort';
 
-import SeatChart from '../src/Components/SeatChart';*/
+/*import SeatChart from '../src/Components/SeatChart';*/
 
 import ContractAbi from '../src/artifacts/contracts/TicketOrganiser.sol/TicketOrganiser.json';
 
@@ -150,6 +150,8 @@ function App() {
       <h2 className='header__title'><strong>Event</strong> Tickets</h2>
 
       </header>
+
+       <Sort account={account}/>
 
       <div className="cards">
 
