@@ -23,6 +23,10 @@ function App() {
 
   const [registeredEvents , setRegisteredEvents] = useState([]);
 
+  const [toggle , setToggle] = useState(false);
+
+  const [event , setEvent] = useState({});
+
  
   const contractAddress = '0xa919cF1B688ccEb16552A5FeD4178137D7748433';
 
@@ -147,20 +151,25 @@ function App() {
 
       </header>
 
-
-     <h1>GoodBye World</h1> 
-
-      <h2>{account}</h2> 
-
-      <Modal/>
-
       <div className="cards">
 
         {
 
-          registeredEvents.map((event , index) => (
+        account && registeredEvents.map((event , index) => (
 
-            <h3 key={index}>{event.name}</h3>
+          <Modal
+          id={index + 1}
+          event={event}
+          contract={contract}
+          provider={provider}
+          account={account}
+          toggle={toggle}
+          setToggle={setToggle}
+          setRegisteredEvents={setRegisteredEvents}
+          key={index}
+
+
+          />
 
           ))
 
