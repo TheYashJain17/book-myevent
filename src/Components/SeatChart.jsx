@@ -4,7 +4,7 @@ import Seats from './Seats';
 
 const SeatChart = ({event , contract , provider , setToggle}) => {
     
-    const [takenSeat , setTakenSeat] = useState();
+    const [takenSeat , setTakenSeat] = useState(false);
 
     const [soldSeat , setSoldSeat] = useState(false)
 
