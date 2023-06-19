@@ -8,7 +8,7 @@ import Modal from '../src/Components/Modal';
 
 import Sort from '../src/Components/Sort';
 
-/*import SeatChart from '../src/Components/SeatChart';*/
+import SeatChart from '../src/Components/SeatChart';
 
 import ContractAbi from '../src/artifacts/contracts/TicketOrganiser.sol/TicketOrganiser.json';
 
@@ -179,9 +179,24 @@ function App() {
 
       </div>
 
-      
+      {
+
+        toggle && (
+
+          <SeatChart
+
+          setToggle={setToggle}
+          provider={provider}
+          contract={contract}
+          event={event}
+
+          />
 
 
+        )
+
+
+      }
 
 
 
