@@ -29,7 +29,7 @@ async function main(){
     
      name: "Blockchain Seminar",
      cost : ethers.utils.parseEther('0.01'),
-     totalTickets :  50,
+     totalTickets :  150,
      date : "August 22",
      time : "5:00PM IST",
      location : "Noida Stadium Complex , Noida"
@@ -39,7 +39,7 @@ async function main(){
     
      name: "World Cup Final",
      cost : ethers.utils.parseEther('0.02'),
-     totalTickets :  100,
+     totalTickets :  170,
      date : "September 15",
      time : "7:00PM IST",
      location : "Eden Gardens, Kolkata"
@@ -59,7 +59,7 @@ async function main(){
     
      name: "Arijit Singh Concert",
      cost : ethers.utils.parseEther('0.03'),
-     totalTickets :  30,
+     totalTickets :  130,
      date : "November 17",
      time : "9:00PM IST",
      location : "DY Patil Stadium , Mumbai"
@@ -69,7 +69,7 @@ async function main(){
     
      name: "Common Wealth Game",
      cost : ethers.utils.parseEther('0.05'),
-     totalTickets :  10,
+     totalTickets :  110,
      date : "December 31",
      time : "10:00AM IST",
      location : "Jawaharlal Nehru Stadium , Delhi"
@@ -113,4 +113,5 @@ main().catch((error) => {
 // The Address Of The Contract is 0xa919cF1B688ccEb16552A5FeD4178137D7748433
 
 // Another Address Of The Contract is 0x82d01a80B22d0Ed5C236F4592a91AbCdE407216b
-
+ 
+// The Final Address Of The Contract is 0x1f2Ae7D5949E179414b52a0a449b49bcD353f5bF

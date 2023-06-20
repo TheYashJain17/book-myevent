@@ -67,11 +67,29 @@ function createEvent(string memory _name , uint256 _cost , uint256 _totalTickets
 
 }
 
-function getEvent(uint256 _id) view external returns(Event memory)
+function getEvent(uint256 _id) view external returns
+
+(
+    uint256,
+    string memory,
+    uint256,
+    uint256,
+    string memory,
+    string memory,
+    string memory
+)
 {
 
-    return EventDetails[_id];
+    return(
+        EventDetails[_id].id,     
+        EventDetails[_id].name,  
+        EventDetails[_id].cost,
+        EventDetails[_id].totalTickets,
+        EventDetails[_id].date,
+        EventDetails[_id].time,
+        EventDetails[_id].location
 
+    );
 
 }
 

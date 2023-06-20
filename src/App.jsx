@@ -28,7 +28,7 @@ function App() {
   const [event , setEvent] = useState({});
 
  
-  const contractAddress = '0xa919cF1B688ccEb16552A5FeD4178137D7748433';
+  const contractAddress = '0x1f2Ae7D5949E179414b52a0a449b49bcD353f5bF';
 
   const ABI = ContractAbi.abi;
 
@@ -159,6 +159,7 @@ function App() {
 
         account && registeredEvents.map((event , index) => (
 
+
           <Modal
           id={index + 1}
           event={event}
@@ -167,7 +168,8 @@ function App() {
           account={account}
           toggle={toggle}
           setToggle={setToggle}
-          setRegisteredEvents={setRegisteredEvents}
+          // setRegisteredEvents={setRegisteredEvents}
+          setEvent={setEvent}
           key={index}
 
 

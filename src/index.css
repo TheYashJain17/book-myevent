@@ -401,11 +401,13 @@ header {
 .occasion__close:hover {
   background: rgba(255, 255, 255, 1);
   border: 1px solid var(--clr-white);
+  
 }
 
 .occasion__close img {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
+  padding-left: 7px;
 }
 
 .occasion__stage,

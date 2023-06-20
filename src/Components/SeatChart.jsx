@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 
 import Seats from './Seats';
 
+import close from '../assets/close-button.svg';
+
 const SeatChart = ({event , contract , provider , setToggle}) => {
     
     const [takenSeat , setTakenSeat] = useState(false);
@@ -45,7 +47,7 @@ useEffect(() => {
 
     <h1>{event.name} Seat Map</h1>
 
-    <button onClick={() => setToggle(false)} className="occasion__close"><img src="" alt="close"/></button>
+    <button onClick={() => setToggle(false)} className="occasion__close"><img src={close} alt="close"/></button>
 
     <div className="occasion__stage">
 
@@ -114,7 +116,7 @@ useEffect(() => {
         <Seats
 
             index={index}
-            step={(Number(occasion.maxTickets) - 24)}
+            step={(Number(event.maxTickets) - 24)}
             columnStart={22}
             maxColumns={5}
             rowStart={2}

@@ -2,11 +2,11 @@ import {ethers} from 'ethers'
 
 import React from 'react'
 
-const Modal = ({event , provider , contract , account , setToggle , setRegisteredEvents , toggle}) => {
+const Modal = ({event , provider , setEvent , contract , account , setToggle , setRegisteredEvents , toggle}) => {
 
   const toggler = () => {
 
-    setRegisteredEvents(event);
+    setEvent(event);
 
     toggle ? setToggle(false) : setToggle(true)
 
@@ -51,6 +51,8 @@ const Modal = ({event , provider , contract , account , setToggle , setRegistere
       ETH
 
     </p>
+
+    
 
     {event.totalTickets.toString() === "0" ? (
 
