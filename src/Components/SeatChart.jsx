@@ -40,27 +40,29 @@ useEffect(() => {
 
 } , [soldSeat]);
 
-  return (
-
+return (
     <div className="occasion">
-    <div className="occasion__Seating">
+      
+      <div className="occasion__seating">
+      
+        <h1>{event.name} Seating Map</h1>
 
-    <h1>{event.name} Seat Map</h1>
+        <button onClick={() => setToggle(false)} className="occasion__close">
+          
+          <img src={close} alt="Close" />
 
-    <button onClick={() => setToggle(false)} className="occasion__close"><img src={close} alt="close"/></button>
+        </button>
 
-    <div className="occasion__stage">
+        <div className="occasion__stage">
 
-    <strong>STAGE</strong>
+          <strong>STAGE</strong>
 
-    </div>
+        </div>
 
-    {
-        takenSeat && Array(25).fill(1).map((element  , index ) => 
-
-            <Seats
-
+        {takenSeat && Array(25).fill(1).map((element, index) =>
+          <Seats
             index={index}
+            step={1}
             columnStart={0}
             maxColumns={5}
             rowStart={2}
@@ -68,24 +70,18 @@ useEffect(() => {
             takenSeat={takenSeat}
             buyHandler={buyHandler}
             key={index}
+          />
+        )}
 
-            />
+        <div className="occasion__spacer--1 ">
 
-        )
-    }
+          <strong>WALKWAY</strong>
 
-    <div className="occasion__spacer--1">
+        </div>
 
-    <strong>WALKAWAY</strong>
+        {takenSeat && Array(Number(event.totalTickets) - 50).fill(1).map((element, index) =>
 
-    </div>
-
-    {
-
-        takenSeat && Array(Number(event.totalTickets) - 50).fill(1).map((element , index) => 
-        
-        <Seats
-
+          <Seats
             index={index}
             step={26}
             columnStart={6}
@@ -95,28 +91,20 @@ useEffect(() => {
             takenSeat={takenSeat}
             buyHandler={buyHandler}
             key={index}
+          />
+        )}
 
-        />
-
+        <div className="occasion__spacer--2">
         
-        )
+          <strong>WALKWAY</strong>
 
-    }
+        </div>
 
-    <div className="occasion__spacer--2">
+        {takenSeat && Array(25).fill(1).map((element , index) =>
 
-        WALKAWAY
-
-    </div>
-
-    {
-
-        takenSeat && Array(25).fill(1).map((element , index) => 
-        
-        <Seats
-
+          <Seats
             index={index}
-            step={(Number(event.maxTickets) - 24)}
+            step={(Number(event.totalTickets) - 24)}
             columnStart={22}
             maxColumns={5}
             rowStart={2}
@@ -124,19 +112,11 @@ useEffect(() => {
             takenSeat={takenSeat}
             buyHandler={buyHandler}
             key={index}
-
-        />
-        
-        
-        )
-
-    }
-
-
-    </div>
-    </div>
-
-  )
+          />
+        )}
+      </div>
+    </div >
+  );
 
 }
 
