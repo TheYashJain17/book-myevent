@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+
+import {ethers} from 'ethers';
 
 import Seats from './Seats';
 
@@ -22,15 +24,37 @@ const getTakenSeats = async() => {
 
 const buyHandler = async(_seat) => {
 
-    setSoldSeat(false);
+  setSoldSeat(false);
+
+  console.log("We Are in the function");
+
+  console.log(`This is our eventId ${event.Id}`);
+
+  console.log(`This is our seat ${_seat}`)
+
+    try {
 
     const signer  = await provider.getSigner();
 
-    const buyTransaction = await contract.connect(signer).buyTickets(event.id , _seat , {value : event.cost});
+    const buyTransaction = await contract.connect(signer).buyTickets(event.Id , _seat , {value : event.cost});
 
     await buyTransaction.wait();
 
+    console.log("Transaction is done");
+
     setSoldSeat(true);
+      
+    } catch (error) {
+
+      if(error.name == "Id Doesnt exist" ||   error.message == 'Internal JSON-RPC error.'){
+
+          alert("Please Enter a valid id")
+
+      }
+
+     
+      
+    }
 
 }
 
@@ -103,7 +127,7 @@ return (
         {takenSeat && Array(25).fill(1).map((element , index) =>
 
           <Seats
-            index={index}
+            index={Number(index)}
             step={(Number(event.totalTickets) - 24)}
             columnStart={22}
             maxColumns={5}

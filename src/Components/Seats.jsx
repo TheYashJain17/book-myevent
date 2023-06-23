@@ -5,19 +5,19 @@ const Seats = ({index , step , columnStart , maxColumns , rowStart , maxRows , t
     
     return (
 
-        <div onClick={() => buyHandler(index + step)}
-        className={takenSeat.find(seat => Number(seat) == index + step) ? "occasion__seats--taken" : "occasion__seats"}
-        
-        style={{
+        <div
+            onClick={() => buyHandler(index + step)}
 
-            gridColumn: `${((index % maxColumns) + 1) + columnStart}`,
-            gridRow: `${Math.ceil(((index + 1) / maxRows)) + rowStart}`
+            className={takenSeat.find(seat => Number(seat) == index + step) ? "occasion__seats--taken" : "occasion__seats"}
 
-        }}
-        
+            style={{
+                gridColumn: `${((index % maxColumns) + 1) + columnStart}`,
+                gridRow: `${Math.ceil(((index + 1) / maxRows)) + rowStart}`
+
+            }}
+
         >
-        
-        {index + step}
+            {index + step}
 
         </div>
         

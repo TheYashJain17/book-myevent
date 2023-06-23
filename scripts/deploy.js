@@ -6,9 +6,6 @@ configDotenv(); //and then run this as function , and it will do the same job as
 
 async function main(){
 
-  // const deployer = process.env.PUBLIC_KEY;
-
-
   const [deployer] = await ethers.getSigners(); //This will help us to get the account from which we have deployed the contract , this method returns the array of object therefore we have put the deployer variabele imside array. So always use this method to get the deployer address. 
 
   const TicketOrganiser = await hre.ethers.getContractFactory('TicketOrganiser');
@@ -28,7 +25,7 @@ async function main(){
     {
     
      name: "Blockchain Seminar",
-     cost : ethers.utils.parseEther('0.01'),
+     cost : ethers.utils.parseEther('0.001'),
      totalTickets :  150,
      date : "August 22",
      time : "5:00PM IST",
@@ -38,7 +35,7 @@ async function main(){
     {
     
      name: "World Cup Final",
-     cost : ethers.utils.parseEther('0.02'),
+     cost : ethers.utils.parseEther('0.002'),
      totalTickets :  170,
      date : "September 15",
      time : "7:00PM IST",
@@ -48,7 +45,7 @@ async function main(){
     {
     
      name: "WWE Live Event",
-     cost : ethers.utils.parseEther('0.04'),
+     cost : ethers.utils.parseEther('0.004'),
      totalTickets :  0,
      date : "October 26",
      time : "2:00PM IST",
@@ -58,7 +55,7 @@ async function main(){
     {
     
      name: "Arijit Singh Concert",
-     cost : ethers.utils.parseEther('0.03'),
+     cost : ethers.utils.parseEther('0.003'),
      totalTickets :  130,
      date : "November 17",
      time : "9:00PM IST",
@@ -68,7 +65,7 @@ async function main(){
     {
     
      name: "Common Wealth Game",
-     cost : ethers.utils.parseEther('0.05'),
+     cost : ethers.utils.parseEther('0.005'),
      totalTickets :  110,
      date : "December 31",
      time : "10:00AM IST",
@@ -114,4 +111,7 @@ main().catch((error) => {
 
 // Another Address Of The Contract is 0x82d01a80B22d0Ed5C236F4592a91AbCdE407216b
  
-// The Final Address Of The Contract is 0x1f2Ae7D5949E179414b52a0a449b49bcD353f5bF
+// The Second Last Address Of The Contract is 0x1f2Ae7D5949E179414b52a0a449b49bcD353f5bF
+
+// The Final Address Of The Contract is 0xA0Da058E9833B3fDae89a6D0F378d779F691Ea08
+
