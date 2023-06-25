@@ -60,11 +60,11 @@ function App() {
         setAccount(currentlyConnectedAccounts[0]);
 
       }
-      // else{
+      else{
 
-      //   alert("Connect To Metanmask With Connect Wallet Button");
+        alert("Connect To Metanmask With Connect Wallet Button");
 
-      // }
+      }
 
     }
   }
@@ -72,9 +72,6 @@ function App() {
   const getContractInstance = async() => {
 
     if(typeof ethereum != "undefined" && account != null){
-
-  
-    
 
         const provider = new ethers.providers.Web3Provider(ethereum);
 
@@ -96,7 +93,13 @@ function App() {
     setProvider(provider);
 
   }
+
+
   const loadEvents = async() => {
+
+    /*Try to delete the below code of generating the contract instance and instead of this code ,
+    just simply run the contract instance function we created above and check whether it is working or not.
+    If Not Working then paste the previous code back.*/
 
     const provider = new ethers.providers.Web3Provider(ethereum);
     

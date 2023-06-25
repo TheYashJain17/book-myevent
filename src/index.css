@@ -65,8 +65,11 @@ nav {
   /* border: 2px solid red ; */
   border-radius: 6px;
   margin: 0 5px;
-  padding-left: 30px;
+  padding-left: 33px;
+
+ 
 }
+
 
 .nav__search::placeholder {
   color: var(--clr-black);
@@ -76,6 +79,8 @@ nav {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-right: 2px;
+  padding-right: 2px;
 
 }
 
