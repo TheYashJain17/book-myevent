@@ -16,7 +16,7 @@ const SeatChart = ({event , contract , provider , setToggle}) => {
 const getTakenSeats = async() => {
 
 
-    const takenSeats = await contract.takenSeatsList(event.id);
+    const takenSeats = await contract.getTakenSeats(event.id);
 
     setTakenSeat(takenSeats);
 
@@ -26,35 +26,21 @@ const buyHandler = async(_seat) => {
 
   setSoldSeat(false);
 
-  console.log("We Are in the function");
-
-  console.log(`This is our eventId ${event.Id}`);
-
   console.log(`This is our seat ${_seat}`)
-
-    try {
 
     const signer  = await provider.getSigner();
 
-    const buyTransaction = await contract.connect(signer).buyTickets(event.Id , _seat , {value : event.cost});
+    const buyTransaction = await contract.connect(signer).buyTickets(event.id , _seat , {value : event.cost});
 
     await buyTransaction.wait();
 
     console.log("Transaction is done");
 
+    alert("Seat Has Been Purchased Successfully");
+
     setSoldSeat(true);
       
-    } catch (error) {
-
-      if(error.name == "Id Doesnt exist" ||   error.message == 'Internal JSON-RPC error.'){
-
-          alert("Please Enter a valid id")
-
-      }
-
      
-      
-    }
 
 }
 

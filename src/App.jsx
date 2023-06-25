@@ -28,7 +28,7 @@ function App() {
   const [event , setEvent] = useState({});
 
  
-  const contractAddress = '0xA0Da058E9833B3fDae89a6D0F378d779F691Ea08';
+  const contractAddress = '0x8b0F5230Ba59D0eb1615396F53bFb868F3c2998A';
 
   const ABI = ContractAbi.abi;
 
