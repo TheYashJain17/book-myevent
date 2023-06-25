@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import {ethers} from 'ethers';
-
 import Seats from './Seats';
 
 import close from '../assets/close-button.svg';
@@ -15,7 +13,6 @@ const SeatChart = ({event , contract , provider , setToggle}) => {
 
 const getTakenSeats = async() => {
 
-
     const takenSeats = await contract.getTakenSeats(event.id);
 
     setTakenSeat(takenSeats);
@@ -24,9 +21,11 @@ const getTakenSeats = async() => {
 
 const buyHandler = async(_seat) => {
 
-  setSoldSeat(false);
+  try {
 
-  console.log(`This is our seat ${_seat}`)
+    setSoldSeat(false);
+
+    console.log(`This is our seat ${_seat}`)
 
     const signer  = await provider.getSigner();
 
@@ -39,8 +38,21 @@ const buyHandler = async(_seat) => {
     alert("Seat Has Been Purchased Successfully");
 
     setSoldSeat(true);
-      
-     
+    
+  } catch (error) {
+
+    if(error.reason == "execution reverted: This seat is already taken"){
+
+      alert("This seat is already taken")
+
+    }
+
+    // console.log(error.reason);
+        
+    // alert(error.reason);
+    
+    
+  }
 
 }
 
