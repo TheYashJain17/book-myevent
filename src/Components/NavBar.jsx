@@ -2,6 +2,8 @@ import React from 'react'
 
 import { useEffect } from 'react';
 
+import bookmyevent from '../assets/BookMyEvent.svg'
+
 const NavBar = ({account , getContractInstance , connectWallet , getConnectedAccounts}) => {
 
     useEffect(() => {
@@ -37,13 +39,25 @@ const NavBar = ({account , getContractInstance , connectWallet , getConnectedAcc
       } , [account]);
 
 
+  const reload = () => {
+
+    window.location.reload();
+
+  }
+
+
   return (
+
+    <>
+
 
     <nav>
 
     <div className="nav__brand">
 
-        <h1>BookMyEvent</h1>
+        <a href="/"><img onClick={reload} src={bookmyevent} alt="BookMyEvent"/></a>  
+
+        <h1><a href="/">BookMyEvent</a></h1>
 
         <input className='nav__search' type="text" placeholder='Find Millions Of Events' />
 
@@ -58,27 +72,34 @@ const NavBar = ({account , getContractInstance , connectWallet , getConnectedAcc
         </ul>
     </div>
 
-    {
-
-        account ? (<button type='button' className='nav__connect'>
-        
-        {account.slice(0,6) + "..." + account.slice(39)}
-        
-        </button>)
-
-        :
-
-
-        (<button type='button' className='nav__connect' onClick={connectWallet}>Connect Wallet</button>)
-
-
-    }
-
-  
-
     </nav>
 
-)
+  <div className='notconnectedbtn'>
+
+
+  {
+
+    account ? (<button type='button' className='nav__connect'>
+
+    {account.slice(0,6) + "..." + account.slice(39)}
+
+      </button>)
+
+      :
+
+  (<button type='button' className='notconnected' onClick={connectWallet}>Connect Wallet</button>)
+
+
+}
+
+  </div>
+
+
+  </>
+
+
+  )
+
 }
 
 export default NavBar
