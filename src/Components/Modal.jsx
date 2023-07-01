@@ -1,8 +1,8 @@
 import {ethers} from 'ethers'
 
-import React from 'react'
+import React, { useState } from 'react'
 
-const Modal = ({event , provider , setEvent , contract , account , setToggle , setRegisteredEvents , toggle}) => {
+const Modal = ({event , provider , setEvent , contract , account , setToggle , setRegisteredEvents , toggle , id}) => {
 
   const toggler = () => {
 
@@ -12,7 +12,10 @@ const Modal = ({event , provider , setEvent , contract , account , setToggle , s
 
   }
 
+
   return (
+
+    <>
 
     <div className="card">
 
@@ -40,11 +43,7 @@ const Modal = ({event , provider , setEvent , contract , account , setToggle , s
 
       <strong>
 
-      {/* {event.cost} */}
-
       {ethers.utils.formatUnits(event.cost.toString() , "ether")}
-
-
         
       </strong>
 
@@ -70,8 +69,10 @@ const Modal = ({event , provider , setEvent , contract , account , setToggle , s
 
     </div>
 
+    </>
 
   )
+  
 }
 
 export default Modal

@@ -2,6 +2,10 @@ import {useState , useEffect} from 'react';
 
 import {ethers} from 'ethers';
 
+import "react-toastify/dist/ReactToastify.css"
+
+import {toast , ToastContainer} from "react-toastify";
+
 import NavBar from '../src/Components/NavBar';
 
 import Modal from '../src/Components/Modal';
@@ -41,10 +45,12 @@ function App() {
 
       setAccount(accounts[0]);
 
+      toast.success("Account Connected Successfully");
+
     }
     else{
 
-      alert("Please Install Metamask");
+      toast.warn("Please Install Metamask")
 
     }
   }
@@ -62,7 +68,9 @@ function App() {
       }
       else{
 
-        alert("Connect To Metanmask With Connect Wallet Button");
+        // alert("Connect To Metanmask With Connect Wallet Button");
+
+        toast.warn("Connect To Metanmask With Connect Wallet Button")
 
       }
 
@@ -84,7 +92,7 @@ function App() {
             signer
       )
 
-      console.log(contract , signer , provider);
+      // console.log(contract , signer , provider);
 
     }
 
@@ -119,11 +127,11 @@ function App() {
 
     const allEvents = await contract.getAllEvents();
 
-    console.log(allEvents);
+    // console.log(allEvents);
 
     setRegisteredEvents(allEvents);
 
-    console.log(registeredEvents);
+    // console.log(registeredEvents);
 
 
   }
@@ -135,9 +143,6 @@ function App() {
   } , []);
 
  
-
-
-
   return (
     <>
 
@@ -147,6 +152,8 @@ function App() {
         getConnectedAccounts={getConnectedAccounts}
         getContractInstance={getContractInstance}
        />
+
+       <ToastContainer/>
 
       <header>
 
@@ -171,7 +178,6 @@ function App() {
           account={account}
           toggle={toggle}
           setToggle={setToggle}
-          // setRegisteredEvents={setRegisteredEvents}
           setEvent={setEvent}
           key={index}
 

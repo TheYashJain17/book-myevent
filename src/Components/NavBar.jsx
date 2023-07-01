@@ -4,6 +4,10 @@ import { useEffect } from 'react';
 
 import bookmyevent from '../assets/BookMyEvent.svg'
 
+import "react-toastify/dist/ReactToastify.css"
+
+import {toast , ToastContainer} from "react-toastify";
+
 const NavBar = ({account , getContractInstance , connectWallet , getConnectedAccounts}) => {
 
     useEffect(() => {
@@ -11,8 +15,8 @@ const NavBar = ({account , getContractInstance , connectWallet , getConnectedAcc
         window.ethereum.on("chainChanged" , (chainId) => {
     
           if(chainId != '0x13881'){
-    
-            alert("Please Move To Mumbai Polygon Network");
+                
+            toast.warn("Please Move To Mumbai Polygon Network");
     
           }
           else{
@@ -39,11 +43,7 @@ const NavBar = ({account , getContractInstance , connectWallet , getConnectedAcc
       } , [account]);
 
 
-  const reload = () => {
-
-    window.location.reload();
-
-  }
+ 
 
 
   return (
@@ -55,7 +55,7 @@ const NavBar = ({account , getContractInstance , connectWallet , getConnectedAcc
 
     <div className="nav__brand">
 
-        <a href="/"><img onClick={reload} src={bookmyevent} alt="BookMyEvent"/></a>  
+        <a href="/"><img  src={bookmyevent} alt="BME"/></a>  
 
         <h1><a href="/">BookMyEvent</a></h1>
 
@@ -93,6 +93,8 @@ const NavBar = ({account , getContractInstance , connectWallet , getConnectedAcc
 }
 
   </div>
+
+  <ToastContainer/>
 
 
   </>

@@ -4,6 +4,10 @@ import Seats from './Seats';
 
 import close from '../assets/close-button.svg';
 
+import "react-toastify/dist/ReactToastify.css"
+
+import {toast , ToastContainer} from "react-toastify";
+
 const SeatChart = ({event , contract , provider , setToggle}) => {
     
     const [takenSeat , setTakenSeat] = useState(false);
@@ -33,9 +37,11 @@ const buyHandler = async(_seat) => {
 
     await buyTransaction.wait();
 
-    console.log("Transaction is done");
+    // console.log("Transaction is done");
 
-    alert("Seat Has Been Purchased Successfully");
+    // alert("Seat Has Been Purchased Successfully");
+
+    toast.success(`Seat ${_seat} Has Been Purchased Successfully`)
 
     setSoldSeat(true);
     
@@ -43,7 +49,9 @@ const buyHandler = async(_seat) => {
 
     if(error.reason == "execution reverted: This seat is already taken"){
 
-      alert("This seat is already taken")
+      // alert("This seat is already taken")
+
+      toast.error("This Seat Is Already Taken");
 
     }
 
@@ -63,6 +71,13 @@ useEffect(() => {
 } , [soldSeat]);
 
 return (
+
+  <>
+
+
+
+    <ToastContainer/>
+
     <div className="occasion">
       
       <div className="occasion__seating">
@@ -138,6 +153,9 @@ return (
         )}
       </div>
     </div >
+
+  </>
+
   );
 
 }
