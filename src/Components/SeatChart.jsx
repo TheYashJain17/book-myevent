@@ -37,11 +37,7 @@ const buyHandler = async(_seat) => {
 
     await buyTransaction.wait();
 
-    // console.log("Transaction is done");
-
-    // alert("Seat Has Been Purchased Successfully");
-
-    toast.success(`Seat ${_seat} Has Been Purchased Successfully`)
+    toast.success(`Seat ${_seat} Of Event ${event.name} Has Been Booked Successfully`)
 
     setSoldSeat(true);
     
@@ -49,16 +45,9 @@ const buyHandler = async(_seat) => {
 
     if(error.reason == "execution reverted: This seat is already taken"){
 
-      // alert("This seat is already taken")
-
       toast.error("This Seat Is Already Taken");
 
     }
-
-    // console.log(error.reason);
-        
-    // alert(error.reason);
-    
     
   }
 

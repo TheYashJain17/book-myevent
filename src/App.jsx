@@ -45,8 +45,6 @@ function App() {
 
       setAccount(accounts[0]);
 
-      toast.success("Account Connected Successfully");
-
     }
     else{
 
@@ -68,7 +66,6 @@ function App() {
       }
       else{
 
-        // alert("Connect To Metanmask With Connect Wallet Button");
 
         toast.warn("Connect To Metanmask With Connect Wallet Button")
 
@@ -77,37 +74,10 @@ function App() {
     }
   }
 
-  const getContractInstance = async() => {
-
-    if(typeof ethereum != "undefined" && account != null){
-
-        const provider = new ethers.providers.Web3Provider(ethereum);
-
-        const signer = await provider.getSigner();
-
-        const contract = new ethers.Contract(
-
-            contractAddress,
-            ABI,
-            signer
-      )
-
-      // console.log(contract , signer , provider);
-
-    }
-
-    setContract(contract);
-
-    setProvider(provider);
-
-  }
 
 
   const loadEvents = async() => {
 
-    /*Try to delete the below code of generating the contract instance and instead of this code ,
-    just simply run the contract instance function we created above and check whether it is working or not.
-    If Not Working then paste the previous code back.*/
 
     const provider = new ethers.providers.Web3Provider(ethereum);
     
@@ -123,15 +93,16 @@ function App() {
 
     )
 
+  
     setContract(contract);
+
+
+ 
 
     const allEvents = await contract.getAllEvents();
 
-    // console.log(allEvents);
-
     setRegisteredEvents(allEvents);
 
-    // console.log(registeredEvents);
 
 
   }
@@ -142,18 +113,19 @@ function App() {
 
   } , []);
 
- 
+
   return (
     <>
+
+    <ToastContainer/>
+
 
 
       <NavBar account={account} 
         connectWallet={connectWallet}
         getConnectedAccounts={getConnectedAccounts}
-        getContractInstance={getContractInstance}
        />
 
-       <ToastContainer/>
 
       <header>
 
@@ -171,11 +143,7 @@ function App() {
 
 
           <Modal
-          id={index + 1}
           event={event}
-          contract={contract}
-          provider={provider}
-          account={account}
           toggle={toggle}
           setToggle={setToggle}
           setEvent={setEvent}

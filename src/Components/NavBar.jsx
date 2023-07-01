@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css"
 
 import {toast , ToastContainer} from "react-toastify";
 
-const NavBar = ({account , getContractInstance , connectWallet , getConnectedAccounts}) => {
+const NavBar = ({account , connectWallet , getConnectedAccounts}) => {
 
     useEffect(() => {
 
@@ -32,24 +32,20 @@ const NavBar = ({account , getContractInstance , connectWallet , getConnectedAcc
           window.location.reload();
     
           setAccount(accounts[0]);
+
     
         });
     
     
         getConnectedAccounts();
     
-        getContractInstance();
     
       } , [account]);
-
-
- 
 
 
   return (
 
     <>
-
 
     <nav>
 

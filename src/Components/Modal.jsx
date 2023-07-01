@@ -1,8 +1,8 @@
 import {ethers} from 'ethers'
 
-import React, { useState } from 'react'
+import React from 'react'
 
-const Modal = ({event , provider , setEvent , contract , account , setToggle , setRegisteredEvents , toggle , id}) => {
+const Modal = ({event , setEvent , setToggle , toggle }) => {
 
   const toggler = () => {
 
