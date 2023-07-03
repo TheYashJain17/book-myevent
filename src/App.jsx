@@ -67,7 +67,7 @@ function App() {
       else{
 
 
-        toast.warn("Connect To Metanmask With Connect Wallet Button")
+        toast.warn("Connect To Metamask With Connect Wallet Button")
 
       }
 
