@@ -15,15 +15,11 @@ const NavBar = ({account , connectWallet , getConnectedAccounts}) => {
 
     const chainId = await window.ethereum.request({method : "eth_chainId"});
 
-    // console.log(chainId);
-
     const polygonChainId = '0x13881';
 
     if(chainId != polygonChainId){
 
       alert("Please Move To Mumbai Polygon Network");
-
-      // toast.warn("Please Move To Mumbai Polygon Network");
 
       try {
         
@@ -34,26 +30,17 @@ const NavBar = ({account , connectWallet , getConnectedAccounts}) => {
 
         })
 
-        // alert("Network has been switched to mumbai polygon successfully");
-
-        // toast.success("Network Has Been Switched To Mumbai Polygon");
 
       } catch (error) {
 
         if(error.code == 4902){
-
-          // alert("This is network is not available in your metamask , Please Add It");
 
           toast.error("This Network Is Not Available On Your Metamask , Please Add It");
 
         }
         else{
 
-          // alert("Failed To Switch To The Network , Some Error Occured");
-
           toast.error("Failed To Switch To The Network , Some Error Occured");
-
-          // console.log(error.reason)
 
         }
 
@@ -61,43 +48,44 @@ const NavBar = ({account , connectWallet , getConnectedAccounts}) => {
 
     }
     
+  }
+
+}
+
+  const checkOnChanges = () => {
+
+    window.ethereum.on("chainChanged" , (chainId) => {
+    
+      if(chainId != '0x13881' && account != null){ 
+            
+        checkForPolygonNetwork();
+
+      }
+      else{
+
+        window.location.reload();
+
+      }
+
+    });
+
+    window.ethereum.on("accountsChanged" , (accounts) => {
+
+      window.location.reload();
+
+      setAccount(accounts[0]);
+
+
+    });
 
   }
 
 
-}
-
-
     useEffect(() => {
 
-        window.ethereum.on("chainChanged" , (chainId) => {
-    
-          if(chainId != '0x13881' && account != null){ 
-                
-            // toast.warn("Please Move To Mumbai Polygon Network");
+      checkOnChanges();
 
-            checkForPolygonNetwork();
-    
-          }
-          else{
-    
-            window.location.reload();
-    
-          }
-    
-        });
-    
-        window.ethereum.on("accountsChanged" , (accounts) => {
-    
-          window.location.reload();
-    
-          setAccount(accounts[0]);
-
-    
-        });
-    
-    
-        getConnectedAccounts();
+      getConnectedAccounts();
     
       account && checkForPolygonNetwork();
 

@@ -139,16 +139,15 @@ function App() {
 
         {
 
-        account && registeredEvents.map((event , index) => (
+        account && registeredEvents.map((registeredEvent , index) => (
 
 
           <Modal
-          event={event}
+          event={registeredEvent}
           toggle={toggle}
           setToggle={setToggle}
           setEvent={setEvent}
           key={index}
-
 
           />
 
