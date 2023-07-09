@@ -193,7 +193,6 @@ nav {
   margin: 200px 603px -250px auto;
 
   background: rgba(110, 95, 95, 0.2);
-  /* color: var(--clr-white); */
 
   border: none;
   border-radius: 6px;
@@ -216,6 +215,43 @@ nav {
 
 }
 
+.networkdiv {
+
+  height: 130px;
+  width: 100px;
+
+}
+
+.networkbtn {
+  
+  margin-left: 1190px;
+  margin-bottom: 28px;
+  margin-top: 120px;
+  height: 45px;
+  width: 150px;
+
+  font-size: 0.9em;
+  font-weight: 600;
+  /* border: none; */
+  border-radius: 8px;
+
+  transition: all 250ms ease-in;
+
+
+  cursor: pointer;
+
+  background-color: var(--clr-white) ;
+  color: var(--clr-black);
+
+}
+
+.networkbtn:hover{
+
+  background-color: var(--clr-black);
+  color: var(--clr-white);
+
+}
+
 /* ------------------------------------------------------ */
 /* -- HEADER -- */
 
@@ -229,9 +265,7 @@ header {
   background-repeat: no-repeat;
   background-color: var(--clr-grey);
   min-height: 15vh;
-  margin-top: -12px;
-  
-  
+  margin-top: -135px;  
 
   position: relative;
 }
@@ -337,6 +371,12 @@ header {
 
   font-size: clamp(0.95rem, 3vw, 1.15rem);
   font-weight: 300;
+
+  /*display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;*/
+
 }
 
 .card__name {

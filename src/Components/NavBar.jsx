@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { useEffect } from 'react';
 
@@ -10,16 +10,31 @@ import {toast , ToastContainer} from "react-toastify";
 
 const NavBar = ({account , connectWallet , getConnectedAccounts}) => {
 
+  const [chainId , setChainId] = useState(false);
 
-  const checkForPolygonNetwork = async() => {
+  const checkChainId = async() => {
 
     const chainId = await window.ethereum.request({method : "eth_chainId"});
 
     const polygonChainId = '0x13881';
 
-    if(chainId != polygonChainId){
+    if(chainId == polygonChainId){
 
-      alert("Please Move To Mumbai Polygon Network");
+      setChainId(true);
+
+    }
+    else{
+
+      toast.warn("Please Change Your Network To Mumbai With Change Network Button").wait();
+
+
+    }
+
+  }
+
+  const checkForPolygonNetwork = async() => {
+
+    const polygonChainId = '0x13881';
 
       try {
         
@@ -29,6 +44,8 @@ const NavBar = ({account , connectWallet , getConnectedAccounts}) => {
           params : [{chainId : polygonChainId}]
 
         })
+
+        setChainId(true);
 
 
       } catch (error) {
@@ -44,10 +61,6 @@ const NavBar = ({account , connectWallet , getConnectedAccounts}) => {
 
         }
 
-     
-
-    }
-    
   }
 
 }
@@ -58,7 +71,7 @@ const NavBar = ({account , connectWallet , getConnectedAccounts}) => {
     
       if(chainId != '0x13881' && account != null){ 
             
-        checkForPolygonNetwork();
+        setChainId(false)
 
       }
       else{
@@ -86,9 +99,8 @@ const NavBar = ({account , connectWallet , getConnectedAccounts}) => {
       checkOnChanges();
 
       getConnectedAccounts();
-    
-      account && checkForPolygonNetwork();
 
+      account && checkChainId();
     
       } , [account]);
 
@@ -120,7 +132,7 @@ const NavBar = ({account , connectWallet , getConnectedAccounts}) => {
 
     </nav>
 
-  <div className='notconnectedbtn'>
+  <div>
 
 
   {
@@ -139,6 +151,22 @@ const NavBar = ({account , connectWallet , getConnectedAccounts}) => {
 }
 
   </div>
+
+  <div className='networkdiv'>
+
+
+  {
+
+    !chainId && account ? 
+
+    (<button className='networkbtn' onClick={checkForPolygonNetwork}>Change Network</button>)
+    :
+    ("")
+
+  }
+
+  </div>
+
 
   <ToastContainer/>
 
